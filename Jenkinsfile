@@ -1,4 +1,4 @@
-node('master') {
+node('buildnode') {
 	file_name = "hello.txt"
 	artifact_path = "${JOB_BASE_NAME}_${BUILD_NUMBER}"
 	
