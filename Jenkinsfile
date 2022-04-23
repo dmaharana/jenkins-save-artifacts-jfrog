@@ -40,7 +40,9 @@ node('master') {
 
 void PutObject(file_path, file_name) {
 	expected_response_code = '201'
-	token = credentials('JFROG_JENKINS_ARCHIVE_TOKEN')
+	environment {
+		token = credentials('JFROG_JENKINS_ARCHIVE_TOKEN')
+	}
 
 	httpRequest customHeaders: [[maskValue: true, name: 'X-JFrog-Art-Api', value: token]], httpMode: 'PUT', ignoreSslErrors: true, responseHandle: 'NONE', uploadFile: file_name, url: "${JV_ARTIFACT_REPO}/${file_path}/${file_name}", validResponseCodes: expected_response_code, wrapAsMultipart: false
 }
